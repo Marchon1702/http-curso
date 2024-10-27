@@ -1,0 +1,38 @@
+Formato padrão de uma requisição HTTP.
+
+As requisições feitas pelo protocolo HTTP, possuem um formato padrão, sendo ele 
+[
+    header {
+        informações técnicas como método da requisição, nome entre outras coisas.
+    }
+    body {
+        corpo da mensagem, dados solicitados.
+    }
+]
+
+Métodos mais usados em requisições HTTP: GET, POST, PUT, DELETE.
+
+Algumas requisições devem conter um corpo a ser enviado, por exemplo, um método que tenta realizar um login em uma aplicação, ele deve ser declarado como POST e no corpo da requisição deve conter os dados que serão comparados com os dados existentes na aplicação, para saber se o usuario que está tentabdo logar existe na API ou não.
+
+Quando o método de login é autorizado, o servidor retorna um access Token, ele serve para que o usuário logado possa acessar páginas com autorizações especificas para ele. O servidor tem por sua caracteristica ser stateless, ou seja, ele não guarda estado, então toda e qualquer requisição que alguém logado tiver que fazer, deverá conter o valor do access Token, para lembrar ao servidor que o usuario pode ter acesso aquela área especifica.
+
+Para informar esse access Token podemos usar a forma de sessão, ela é feita informando ao servidor pelo cabeçalho, o valor do access Token atrelado a chave Authorization, o valor de access Token deve ser informado após a palavra Bearer "código do access Token", assim o servidor "lembrará" que o autor da requisição pode ser acesso.
+
+Sobre código de retorno do HTTP
+
+1xx
+100, 101, são códigos de informação.
+
+2xx
+200, 201... são códigos que indicam sucesso como resultado da requisição feita.
+
+3xx
+300, 301, 302... são códigos que indicam redirecionamento, como por exemplo a url daquele requisição foi alterada, entÃo o código 3xx, irá te redicionar para a certa.
+
+4xx
+400, 401, 402... são códigos que indicam algum erro por parte do cliente, ou seja, na hora da requisição o cliente enviou algum dado inválido ao servidor e a requisição nÃo obteve sucesso. Ex: O cliente tentou acessar uma rota de pedidos mas ele não informou o código do access Token dele, isso retornará o erro 401, que significa unauthorized.
+
+5xx
+500, 501, 502... indicam algum erro por parte do servidor, talvez ele esteja fora do ar ou algo do tipo.
+
+No documento rfc, podemos achar mais informações, nele contém todas as regras relacionadas ao protocolo HTTP.

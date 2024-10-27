@@ -1,0 +1,39 @@
+Entendendo sobre URL's (Uniform Resources Locator)
+
+As URLs são endereços de sites, servem para ajudar na localização dos mesmos.
+
+Qual a diferença entre URL e URI 
+
+Pode-se dizer que os dois em contexto geral são sinônimos, mas de um ponto de vista mais aprofundado, podemos dizer que toda URL é uma URI mas nem toda URI é uma URL, pois a forma como uma URI pode ser escrita, ele pode ser feita como uma url "http://meusite/home" ou então dessa maneira "http:meusite:home", nesse segundo formato ele já deixou de ser uma endereço.
+
+ComposiçÃo de uma URL
+
+URLS tem sua ordem padrão de escrita:
+
+Primeiro de escreve o (nome do protocolo:// nome do servidor/ TLD/ raiz/ porta);
+
+Ex: http://meusite.com/home:80 
+
+http = nome do protocolo
+meusite = servidor (Domínio)
+com = TLD - total level domain
+home = raiz (Rota do site que você quer acessar)
+80 = porta de serviço
+
+Sobre portas de serviço 
+
+Para o protocolo http a porta de serviço padrão é a 80, então por ela já ser padronizada globalmente a declaração dela é omítida;
+
+A porta 443 é a porta padrão para o protocolo https, ela também pode ser omítida;
+
+Da porta 1023 até 65535, elas podem ser usadas por nós em nossas máquinas para podermos subir alguma aplicação por exemplo, pois essas portas, sempre estarão livres enquanto as demais (antes de 1023) já executam serviços padrões em nossa máquina e não devemso mexer neles.
+
+Sobre DNS
+
+DNS - Domain name system, são "tradutores" de endereços de ip dos sites. Cada site não verdade é localizado através de um endereço de IP, ou seja quando eu digito https://google.com  o DNS e me retornar o endereço de IP que está ligado a esse domínio.
+
+Agora imaginando que existem milhões de sites ativos na Internet, para o DNS retornar exatamente o site com o domínio requerido o servidor será sobrecarregado, então como modo de "filtrar" melhor estes endereços, é utilizado os TLD's, top level domains, ele são os dominios de nivel mais alto na hieraquia de uma url, fazendo assim com que o nome do servidor, ex: google, seja apenas um sub-domínio, já que o "com" de google.com é o domínio principal, assim o DNS terá apenas que procurar dentro de "com" o endereço de ip correspondente ao sub-domínio google. 
+
+Alguns TLD's com, br, org, net e etc...
+
+
