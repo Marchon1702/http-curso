@@ -1,0 +1,20 @@
+Oquê é o protocolo HTTP?
+
+É um protocolo intermediador da comunicação entre o cliente e o servidor. O HTTP possui algumas regras especificas para que a comunicação seja bem sucessedida. Sabendo que no HTTP os clientes apenas fazem requisições e os servidores apenas respondem, seguem as regras:
+
+A conversa só pode acontecer entre dois;
+A conversa sempre será iniciada pelo cliente, pois apenas ele pode fazer uma requisição;
+Todas as mensagens são passadas por mensagem de texto;
+O HTTP roda na camada do TCP (camada de transporte);
+O servidor nunca deixará o cliente "no vácuo", caso a requisição seja mal sucessedida ele retornará um erro;
+
+Protocolo P2P (peer-to-peer)
+
+É o protocolo usado pelo Torrent, onde não apenas o servidor faz requisições mas os clientes também. Além de atuarem também como servidores, os clientes são capazes de armazenar e compartilhar informações, fazendo com que a carga de trabalho não seja centralizada em apenas um servidor especifico.
+
+Outros protocolos
+
+FTP: File Transport Protocol é um protocolo para transferência de arquivos na Internet.
+SMTP: Simple Mail Transfer Protocol (protocolo simples de transferência de e-mail), protocolo para enviar e-mails.
+
+
