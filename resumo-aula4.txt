@@ -1,0 +1,38 @@
+Como subir uma Api usando o protocolo https:
+
+https é um protocolo mais seguro para trocar informações, pois ele criptografa as mesmas casos alguem hacker tentar intercepta-las.
+
+Para usar o protocolo https temos que baixar o software openSSL, após a instalação devemos configura-lo para que ele rode direto do terminal.
+
+Durante a instalação, copie e guarde o diretorio onde o openSSL foi instalado, quando a instalação for concluida, devemos ir em "painel de controle", "variaveis de ambiente", procure por "path" e selecione o botão "editar", dentro da aba de editar clique no botão "novo", adicione o novo caminho de path, sendo ele o diretorio onde  openSSL foi instalado seguido de "\bin". dde ok em tudo e está habilitado para ser usado no terminal.
+
+Para adicionar arquivos openSSL em uma Api usará o protocolo https, podemos entrar no terminal, acessar o diretorio do projeto e digitar o seguinte comando "openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout server.key -out server.crt", após isso basta fornecer as informações pedidas ou não e dar enter para q a instalação seja concluida, caso queira checar oque foi instalado no projeto, digitar "dir", isso retornará os arquivos baixados para o projeto.
+
+Dentro da aplicação, na parte que inicia o servidor, devemos importar o https e seguir os seguintes passos.
+
+Ex:
+
+const https = require('https');
+
+// Onde o servidor será ouvido.
+
+https.createServer({
+  key: fs.readFileSync('server.key'),
+  cert: fs.readFileSync('server.crt')
+},
+ server
+).listen(8000, () => {
+  console.log("API disponível em https://localhost:8000")
+})
+
+"serve.key" e "server.crt" são os arquivos que o openSSL instalou na aplciação, após isso o servidor já estará rodando com o protocolo https.
+
+Entendendo certificados e chaves privadas
+
+Quando utilizamos o https, ele gera um certificado e uma chave privada para o servidor, isso é usad como forma de autenticação na hora um cliente fazer uma requisição para ele.
+
+O servidor quando se conectada com o cliente mostra sua chave, nela contém dados específicos que provam que ele é quem realmenete "diz" ser. Após isso o cliente gera uma chave privada dele, essas duas chaves são usadas para que os dados sejam criptografados antes de cada requisição.
+
+O cliente cria uma chave privada a cada nova requisição, pois essa chave espelha a chave privada do servidor, que otimiza o tempo de criptografia, usando a criptografia simétrica.
+
+
