@@ -1,0 +1,40 @@
+Sobre o protocolo http2
+
+É a evolução do primeiro, ele foi criado com o intuito de otimizar o tempo da requisições e respostas entre cliente e servidor. 
+
+O protocolo http2 usa o TCP em sua camada de transporte, porém sua vantagem em relação ao primeiro é que ele não usa 1 websocket por requisição, imagine o websocket como um tubo que passa as informações, para cada requisição era criado um "tubo" diferente. Com o http2 foi criado o conceito de multiplexação, onde as requisições sÃo feitas em um websocket só, diminuindo a quantidade de bytes em geral.
+
+O http2 tambem possu em seu formato um header e um body, porém, seu header é feito de uma forma mais compactada, onde seus dados deixam de ser textos e passam a ser binários, que são menores que os de texto e economizam recursos.
+
+Também temos o request obrigatório, usando o recurso server push, oque nos possibilita configurar o servidor para que ele faça requisições antes mesmo do cliente precisar pedir.
+
+A biblioteca que é usada para implementar o http2 é chamada de spdy, sua implemenetaçÃo é bem parecida com a primeira forma quando habilitamos o https.
+
+Segue o exemplo:
+
+const spdy = require("spdy")
+const express = require("express")
+const fs = require("fs")
+
+const app = express()
+
+app.use(express.static("build"))
+
+spdy.createServer(
+  {
+    key: fs.readFileSync("./server.key"),
+    cert: fs.readFileSync("./server.crt")
+  },
+  app
+).listen(3002, (err) => {
+  if(err){
+    throw new Error(err)
+  }
+  console.log("Listening on port 3002")
+})
+
+Sobre o protocolo http3
+
+O http3 usa o Quic, que é uma melhoria do UDP, onde os dados podem ser passados de forma mais dinamica, diferente dos outros o http3 trabalha em cima do protocolo UDP e não do TCP, como é o caso dos anteriores. O Quic é bem mais rápido que TCP, pois ele já tem o tls incluido no seu primeiro contato entre servidor e cliente, entÃo enquanto o http1 ou 2 ainda está ativando o tls o quic já fez algumas requisições.
+
+OBS: Tanto o http2 ou 3, usão https de forma padrão, pois ele sÃo protocolos mais atuais e já sabem q com o https as informações ficam muito mais seguras.

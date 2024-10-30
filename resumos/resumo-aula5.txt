@@ -1,0 +1,40 @@
+Parâmetros na requisição GET e POST;
+
+Em uma requisição GET podemos usar o parâmtero da seguinte forma: 'http://localhost:8000/livros?categoria=2'
+
+Tudo após o interrogação é parâmtero, no formato chave e valor, queremos dizer q a requisição deve retornar livros que contenham a chave "categoria" de valor "2", caso quisessemos inserir mais de um parâmetro, podemos usar "&" seguido pela proxima chave e valor.
+
+Requisição POST
+
+A requisição POST aceita como parâmetro o corpo da mensagem, entÃo definimos o endPoint da requisição e enviamos o arquivo necessário no corpo da requisição.
+
+Configurando o formato dos dados
+
+No header da requisição temos o content-type, nele fica o formato dos dados que serÃo enviados naquela requisição, com nodeJS, podemos definir o content-type em uma rota da seguinte forma.
+
+Ex: 
+
+server.get('/public/docs', (req, res) => {
+  const meuHtml = `
+     <h1>Documentação da API</h1>
+     <ul>
+            <li>GET /livros</li>
+            <li>POST /livros</li>
+            <li>GET /categorias</li>
+     </ul>
+    `
+    res.status(200).contentType("text/html").send(meuHtml)
+})
+
+o contentType "text/html" indica que a requisição passa uma texto formatado em HTML.
+
+Declaração "Accept"
+
+A declaração Accept indica que o cliente pode escolher qual tipo de dados ele quer enviar:
+
+Tipos de declarações Accept.
+
+Accept: text/html, Accept: text/css, Accept: application/xml, Accept: application/json, Accept:image/jpeg e Accept: image/*
+
+"Accept: */*" não define nenhum formato específico.
+
